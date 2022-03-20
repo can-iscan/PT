@@ -1,0 +1,11 @@
+C:\Users\can_i\Desktop\PT\PT\PT\bin\Debug\net5.0\PT.deps.json
+C:\Users\can_i\Desktop\PT\PT\PT\bin\Debug\net5.0\PT.dll
+C:\Users\can_i\Desktop\PT\PT\PT\bin\Debug\net5.0\ref\PT.dll
+C:\Users\can_i\Desktop\PT\PT\PT\bin\Debug\net5.0\PT.pdb
+C:\Users\can_i\Desktop\PT\PT\PT\obj\Debug\net5.0\PT.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\can_i\Desktop\PT\PT\PT\obj\Debug\net5.0\PT.AssemblyInfoInputs.cache
+C:\Users\can_i\Desktop\PT\PT\PT\obj\Debug\net5.0\PT.AssemblyInfo.cs
+C:\Users\can_i\Desktop\PT\PT\PT\obj\Debug\net5.0\PT.csproj.CoreCompileInputs.cache
+C:\Users\can_i\Desktop\PT\PT\PT\obj\Debug\net5.0\PT.dll
+C:\Users\can_i\Desktop\PT\PT\PT\obj\Debug\net5.0\ref\PT.dll
+C:\Users\can_i\Desktop\PT\PT\PT\obj\Debug\net5.0\PT.pdb
