@@ -125,5 +125,41 @@ namespace TestPT.LogicLayer
 			Assert.AreEqual(catalog, logicLayer.getCatalog(catalog.Title));
 			Assert.AreEqual(user, logicLayer.getUser(user.Id));
 		}
+
+		[TestMethod]
+		public void TestMultipleInstances()
+		{
+			DataLayerAPI dataLayer = DataLayerAPI.CreateDataLayerWithCollections();
+			LogicLayerAPI logicLayer = LogicLayerAPI.CreateLayer(dataLayer);
+
+
+			Catalog catalog1 = logicLayer.addCatalog(new Catalog("1984", "George Orwell", 310));
+			Catalog catalog2 = logicLayer.addCatalog(new Catalog("Brave New World", "Aldous Huxley", 288));
+			Catalog catalog3 = logicLayer.addCatalog(new Catalog("Maus", "Art Spiegelman", 270));
+
+			User user1 = logicLayer.addUser(new User("Ozgen", "Acikelli"));
+			User user2 = logicLayer.addUser(new User("Can", "Iscan"));
+			User user3 = logicLayer.addUser(new User("Mert", "Tekin"));
+
+			logicLayer.borrowCatalog(catalog2, user3);
+			logicLayer.borrowCatalog(catalog1, user2);
+			logicLayer.returnCatalog(catalog2, user3);
+			logicLayer.borrowCatalog(catalog3, user1);
+
+			foreach (Event _event in logicLayer.getEvents())
+			{
+				if (_event.StateEntry.Available == true && _event.StateEntry.CatalogEntry == catalog2)
+				{
+					Assert.AreEqual(_event.UserEntry, user3);
+				}
+				else if (_event.StateEntry.CatalogEntry == catalog3)
+				{
+					Assert.IsFalse(_event.StateEntry.Available);
+				}
+			}
+
+			Assert.AreEqual(0 , logicLayer.countAvailableCatalog(catalog3));
+			Assert.AreEqual(1 , logicLayer.countAvailableCatalog(catalog2));
+	}
 	}
 }
