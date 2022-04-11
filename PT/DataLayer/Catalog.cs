@@ -18,8 +18,5 @@ namespace PT.DataLayer
 		}
 	}
 
-	public class CatalogDictionary : Dictionary<string, Catalog>
-	{
-
-	}
+	public class CatalogDictionary : Dictionary<string, Catalog> {}
 }

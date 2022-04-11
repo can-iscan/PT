@@ -6,20 +6,26 @@ namespace PT.DataLayer
 {
 	public class Event
 	{
-		public uint Id;
+		public uint Id = 0;
 		public State StateEntry;
 		public User UserEntry;
+		public DateTime Time;
+
+		public Event(State stateEntry, User userEntry, DateTime time)
+		{
+			this.StateEntry = stateEntry;
+			this.UserEntry = userEntry;
+			this.Time = time;
+		}
 
 		public Event(State stateEntry, User userEntry)
 		{
 			this.StateEntry = stateEntry;
 			this.UserEntry = userEntry;
+			this.Time = DateTime.UtcNow;
 		}
 	}
 
-	public class EventDictionary : Dictionary<uint, Event>
-	{
-
-	}
+	public class EventDictionary : Dictionary<uint, Event> {}
 }
 

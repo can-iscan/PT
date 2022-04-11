@@ -6,7 +6,7 @@ namespace PT.DataLayer
 {
 	public class State
 	{
-		public uint Id;
+		public uint Id = 0;
 		public Catalog CatalogEntry { get; set; }
 		public bool Available { get; set; }
 
@@ -18,8 +18,5 @@ namespace PT.DataLayer
 
 	}
 
-	public class StateDictionary : Dictionary<uint, State>
-	{
-
-	}
+	public class StateDictionary : Dictionary<uint, State> {}
 }
