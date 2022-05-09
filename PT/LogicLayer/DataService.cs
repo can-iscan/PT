@@ -20,49 +20,52 @@ namespace PT.LogicLayer
 			DataRepositoryEntry = new DataRepository(dataLayer);
 		}
 
-		public override Catalog addCatalog(Catalog catalog)
+		public override ICatalog addCatalog(ICatalog catalog)
 		{
 			this.DataRepositoryEntry.DataLayer.addCatalog(catalog.Title, catalog);
-			this.DataRepositoryEntry.DataLayer.addState(new State(catalog, true));
+			IState state = this.DataRepositoryEntry.DataLayer.createState(catalog, true);
+			this.DataRepositoryEntry.DataLayer.addState(state);
 			return catalog;
 		}
 
 
-		public override bool removeCatalog(Catalog catalog)
+		public override bool removeCatalog(ICatalog catalog)
 		{
 			return this.DataRepositoryEntry.DataLayer.removeCatalog(catalog.Title);
 		}
 
-		public override bool borrowCatalog(Catalog catalog, User user)
+		public override bool borrowCatalog(ICatalog catalog, IUser user)
 		{
 
 			if (this.countAvailableCatalog(catalog) > 0)
 			{
-				State newState = new State(catalog, false);
+				IState newState = this.DataRepositoryEntry.DataLayer.createState(catalog, false);
 				this.DataRepositoryEntry.DataLayer.addState(newState);
-				this.DataRepositoryEntry.DataLayer.addEvent(new Event(newState, user));
+				IEvent _event = this.DataRepositoryEntry.DataLayer.createEvent(newState, user);
+				this.DataRepositoryEntry.DataLayer.addEvent(_event);
 				return true;
 			}
 
 			return false;
 		}
 
-		public override bool returnCatalog(Catalog catalog, User user)
+		public override bool returnCatalog(ICatalog catalog, IUser user)
 		{
-			State newState = new State(catalog, true);
+			IState newState = this.DataRepositoryEntry.DataLayer.createState(catalog, true);
 			this.DataRepositoryEntry.DataLayer.addState(newState);
-			this.DataRepositoryEntry.DataLayer.addEvent(new Event(newState, user));
+			IEvent _event = this.DataRepositoryEntry.DataLayer.createEvent(newState, user);
+			this.DataRepositoryEntry.DataLayer.addEvent(_event);
 
 			return true;
 		}
 
-		public override int countAvailableCatalog(Catalog catalog)
+		public override int countAvailableCatalog(ICatalog catalog)
 		{
-			List<State> states = this.DataRepositoryEntry.DataLayer.getAllStates();
+			List<IState> states = this.DataRepositoryEntry.DataLayer.getAllStates();
 
 			int available = 0, notAvailable = 0;
 
-			foreach (State state in states)
+			foreach (IState state in states)
 			{
 				if (state.CatalogEntry.Title == catalog.Title)
 				{
@@ -76,29 +79,29 @@ namespace PT.LogicLayer
 			return available - notAvailable;
 		}
 
-		public override List<User> getUsers()
+		public override List<IUser> getUsers()
 		{
 			return this.DataRepositoryEntry.DataLayer.getAllUsers();
 		}
 
-		public override List<Event> getEvents()
+		public override List<IEvent> getEvents()
 		{
 			return this.DataRepositoryEntry.DataLayer.getAllEvents();
 		}
 
-		public override List<State> getStates()
+		public override List<IState> getStates()
 		{
 			return this.DataRepositoryEntry.DataLayer.getAllStates();
 		}
 
-		public override List<Catalog> getCatalogs()
+		public override List<ICatalog> getCatalogs()
 		{
 			return this.DataRepositoryEntry.DataLayer.getAllCatalogs();
 		}
 
-		public override User getUser(uint id)
+		public override IUser getUser(uint id)
 		{
-			foreach (User user in this.DataRepositoryEntry.DataLayer.getAllUsers())
+			foreach (IUser user in this.DataRepositoryEntry.DataLayer.getAllUsers())
 			{
 				if (user.Id == id)
 					return user;
@@ -107,9 +110,9 @@ namespace PT.LogicLayer
 			throw new Exception("Element not found!");
 		}
 
-		public override Event getEvent(uint id)
+		public override IEvent getEvent(uint id)
 		{
-			foreach (Event _event in this.DataRepositoryEntry.DataLayer.getAllEvents())
+			foreach (IEvent _event in this.DataRepositoryEntry.DataLayer.getAllEvents())
 			{
 				if (_event.Id == id)
 					return _event;
@@ -118,9 +121,9 @@ namespace PT.LogicLayer
 			throw new Exception("Element not found!");
 		}
 
-		public override State getState(uint id)
+		public override IState getState(uint id)
 		{
-			foreach (State state in this.DataRepositoryEntry.DataLayer.getAllStates())
+			foreach (IState state in this.DataRepositoryEntry.DataLayer.getAllStates())
 			{
 				if (state.Id == id)
 					return state;
@@ -129,9 +132,9 @@ namespace PT.LogicLayer
 			throw new Exception("Element not found!");
 		}
 
-		public override Catalog getCatalog(string title)
+		public override ICatalog getCatalog(string title)
 		{
-			foreach (Catalog catalog in this.DataRepositoryEntry.DataLayer.getAllCatalogs())
+			foreach (ICatalog catalog in this.DataRepositoryEntry.DataLayer.getAllCatalogs())
 			{
 				if (catalog.Title == title)
 					return catalog;
@@ -140,12 +143,12 @@ namespace PT.LogicLayer
 			throw new Exception("Element not found!");
 		}
 
-		public override User addUser(User user)
+		public override IUser addUser(IUser user)
 		{
 			return this.DataRepositoryEntry.DataLayer.addUser(user);
 		}
 
-		public override bool removeUser(User user)
+		public override bool removeUser(IUser user)
 		{
 			return this.DataRepositoryEntry.DataLayer.removeUser(user.Id);
 		}

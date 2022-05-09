@@ -40,7 +40,7 @@ namespace TestPT
 			DataLayerAPI dataLayer = DataLayerAPI.CreateDataLayerWithCollections();
 
 			User user = new User("Can", "Iscan");
-			user = dataLayer.addUser(user);
+			user = (User)dataLayer.addUser(user);
 
 			Assert.AreEqual(user, dataLayer.getUser(user.Id));
 
@@ -55,7 +55,7 @@ namespace TestPT
 			Catalog catalog = new Catalog("1984", "George Orwell", 300);
 
 			State state = new State(catalog, true);
-			state = dataLayer.addState(state);
+			state = (State)dataLayer.addState(state);
 
 			Assert.AreEqual(state, dataLayer.getState(state.Id));
 
@@ -72,7 +72,7 @@ namespace TestPT
 			User user2 = new User("Eren", "Tekin");
 
 			Event _event = new Event(state, user);
-			_event = dataLayer.addEvent(_event);
+			_event = (Event)dataLayer.addEvent(_event);
 
 			Assert.AreEqual(_event, dataLayer.getEvent(_event.Id));
 

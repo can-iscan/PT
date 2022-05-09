@@ -23,9 +23,9 @@ namespace PT.DataLayer
 			return true;
 		}
 
-		public override Catalog addCatalog(string title, Catalog catalog)
+		public override ICatalog addCatalog(string title, ICatalog catalog)
 		{
-			this.DataContextEntry.Catalogs.Add(title, catalog);
+			this.DataContextEntry.Catalogs.Add(title, (Catalog)catalog);
 			return catalog;
 		}
 
@@ -42,26 +42,26 @@ namespace PT.DataLayer
 			}
 		}
 
-		public override Catalog getCatalog(string title)
+		public override ICatalog getCatalog(string title)
 		{
 			return this.DataContextEntry.Catalogs[title];
 		}
 
-		public override bool setCatalog(Catalog catalog)
+		public override bool setCatalog(ICatalog catalog)
 		{
-			this.DataContextEntry.Catalogs[catalog.Title] = catalog;
+			this.DataContextEntry.Catalogs[catalog.Title] = (Catalog)catalog;
 			return true;
 		}
 
-		public override List<Catalog> getAllCatalogs()
+		public override List<ICatalog> getAllCatalogs()
 		{
-			return this.DataContextEntry.Catalogs.Values.ToList<Catalog>();
+			return this.DataContextEntry.Catalogs.Values.ToList<ICatalog>();
 		}
 
-		public override User addUser(User user)
+		public override IUser addUser(IUser user)
 		{
 			user.Id = this.IdCounterUser;
-			this.DataContextEntry.Users.Add(this.IdCounterUser, user);
+			this.DataContextEntry.Users.Add(this.IdCounterUser, (User)user);
 			this.IdCounterUser++;
 			return user;
 		}
@@ -79,26 +79,26 @@ namespace PT.DataLayer
 			}
 		}
 
-		public override User getUser(uint id)
+		public override IUser getUser(uint id)
 		{
 			return this.DataContextEntry.Users[id];
 		}
 
-		public override bool setUser(User user)
+		public override bool setUser(IUser user)
 		{
-			this.DataContextEntry.Users[user.Id] = user;
+			this.DataContextEntry.Users[user.Id] = (User)user;
 			return true;
 		}
 
-		public override List<User> getAllUsers()
+		public override List<IUser> getAllUsers()
 		{
-			return this.DataContextEntry.Users.Values.ToList<User>();
+			return this.DataContextEntry.Users.Values.ToList<IUser>();
 		}
 
-		public override State addState(State state)
+		public override IState addState(IState state)
 		{
 			state.Id = this.IdCounterState;
-			this.DataContextEntry.States.Add(this.IdCounterState, state);
+			this.DataContextEntry.States.Add(this.IdCounterState, (State)state);
 			this.IdCounterState++;
 			return state;
 		}
@@ -116,26 +116,26 @@ namespace PT.DataLayer
 			}
 		}
 
-		public override State getState(uint id)
+		public override IState getState(uint id)
 		{
 			return this.DataContextEntry.States[id];
 		}
 
-		public override bool setState(State state)
+		public override bool setState(IState state)
 		{
-			this.DataContextEntry.States[state.Id] = state;
+			this.DataContextEntry.States[state.Id] = (State)state;
 			return true;
 		}
 
-		public override List<State> getAllStates()
+		public override List<IState> getAllStates()
 		{
-			return this.DataContextEntry.States.Values.ToList<State>();
+			return this.DataContextEntry.States.Values.ToList<IState>();
 		}
 
-		public override Event addEvent(Event _event)
+		public override IEvent addEvent(IEvent _event)
 		{
 			_event.Id = this.IdCounterEvent;
-			this.DataContextEntry.Events.Add(this.IdCounterEvent, _event);
+			this.DataContextEntry.Events.Add(this.IdCounterEvent, (Event)_event);
 			this.IdCounterEvent++;
 			return _event;
 		}
@@ -153,20 +153,40 @@ namespace PT.DataLayer
 			}
 		}
 
-		public override Event getEvent(uint id)
+		public override IEvent getEvent(uint id)
 		{
 			return this.DataContextEntry.Events[id];
 		}
 
-		public override bool setEvent(Event _event)
+		public override bool setEvent(IEvent _event)
 		{
-			this.DataContextEntry.Events[_event.Id] = _event;
+			this.DataContextEntry.Events[_event.Id] = (Event)_event;
 			return true;
 		}
 
-		public override List<Event> getAllEvents()
+		public override List<IEvent> getAllEvents()
 		{
-			return this.DataContextEntry.Events.Values.ToList<Event>();
+			return this.DataContextEntry.Events.Values.ToList<IEvent>();
+		}
+
+		public override IEvent createEvent(IState state, IUser user)
+		{
+			return new Event((State)state, (User)user);
+		}
+
+		public override IState createState(ICatalog catalog, bool available)
+		{
+			return new State((Catalog)catalog, available);
+		}
+
+		public override IUser createUser(string fname, string lname)
+		{
+			return new User(fname, lname);
+		}
+
+		public override ICatalog createCatalog(string title, string author, ushort numberOfPages)
+		{
+			return new Catalog(title, author, numberOfPages);
 		}
 	}
 }

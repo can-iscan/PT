@@ -4,22 +4,25 @@ using System.Text;
 
 namespace PT.DataLayer
 {
-	public class Event
+	public class Event : IEvent
 	{
-		public uint Id = 0;
-		public State StateEntry;
-		public User UserEntry;
-		public DateTime Time;
+		public uint Id { get; set; }
+		public IState StateEntry { get; set; }
+		public IUser UserEntry { get; set; }
+		public DateTime Time { get; set; }
 
-		public Event(State stateEntry, User userEntry, DateTime time)
+
+		public Event(IState stateEntry, IUser userEntry, DateTime time)
 		{
+			this.Id = 0;
 			this.StateEntry = stateEntry;
 			this.UserEntry = userEntry;
 			this.Time = time;
 		}
 
-		public Event(State stateEntry, User userEntry)
+		public Event(IState stateEntry, IUser userEntry)
 		{
+			this.Id = 0;
 			this.StateEntry = stateEntry;
 			this.UserEntry = userEntry;
 			this.Time = DateTime.UtcNow;
@@ -27,5 +30,13 @@ namespace PT.DataLayer
 	}
 
 	public class EventDictionary : Dictionary<uint, Event> {}
+
+	public interface IEvent
+	{
+		public uint Id { get; set; }
+		public IState StateEntry { get; set; }
+		public IUser UserEntry { get; set; }
+		public DateTime Time { get; set; }
+	}
 }
 

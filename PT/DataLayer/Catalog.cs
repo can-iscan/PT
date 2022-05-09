@@ -4,11 +4,12 @@ using System.Text;
 
 namespace PT.DataLayer
 {
-	public class Catalog
+	public class Catalog : ICatalog
 	{
 		public string Title { get; set; }
 		public string Author { get; set; }
 		public ushort NumberOfPages { get; set; }
+
 
 		public Catalog(string title, string author, ushort numberOfPages)
 		{
@@ -19,4 +20,11 @@ namespace PT.DataLayer
 	}
 
 	public class CatalogDictionary : Dictionary<string, Catalog> {}
+
+	public interface ICatalog
+	{
+		public string Title { get; set; }
+		public string Author { get; set; }
+		public ushort NumberOfPages { get; set; }
+	}
 }

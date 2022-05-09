@@ -4,14 +4,16 @@ using System.Text;
 
 namespace PT.DataLayer
 {
-	public class State
+	public class State : IState
 	{
-		public uint Id = 0;
-		public Catalog CatalogEntry { get; set; }
+		public uint Id { get; set; }
+		public ICatalog CatalogEntry { get; set; }
 		public bool Available { get; set; }
 
-		public State(Catalog catalogEntry, bool available = true)
+
+		public State(ICatalog catalogEntry, bool available = true)
 		{
+			this.Id = 0;
 			this.CatalogEntry = catalogEntry;
 			this.Available = available;
 		}
@@ -19,4 +21,11 @@ namespace PT.DataLayer
 	}
 
 	public class StateDictionary : Dictionary<uint, State> {}
+
+	public interface IState
+	{
+		public uint Id { get; set; }
+		public ICatalog CatalogEntry { get; set; }
+		public bool Available { get; set; }
+	}
 }

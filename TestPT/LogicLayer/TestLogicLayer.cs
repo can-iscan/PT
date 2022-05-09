@@ -27,12 +27,12 @@ namespace TestPT.LogicLayer
 			LogicLayerAPI logicLayer = LogicLayerAPI.CreateLayer(dataLayer);
 
 
-			Catalog newCatalog = new Catalog("1984", "George Orwell", 310);
+			ICatalog newCatalog = new Catalog("1984", "George Orwell", 310);
 
 			logicLayer.addCatalog(newCatalog);
 
 			bool created = false;
-			foreach (Catalog catalog in logicLayer.getCatalogs())
+			foreach (ICatalog catalog in logicLayer.getCatalogs())
 			{
 				if (catalog.Title == "1984")
 					created = true;
@@ -47,7 +47,7 @@ namespace TestPT.LogicLayer
 			DataLayerAPI dataLayer = DataLayerAPI.CreateDataLayerWithCollections();
 			LogicLayerAPI logicLayer = LogicLayerAPI.CreateLayer(dataLayer);
 
-			User newUser = new User("Can", "Iscan");
+			IUser newUser = new User("Can", "Iscan");
 
 			newUser = logicLayer.addUser(newUser);
 
@@ -67,8 +67,8 @@ namespace TestPT.LogicLayer
 			DataLayerAPI dataLayer = DataLayerAPI.CreateDataLayerWithCollections();
 			LogicLayerAPI logicLayer = LogicLayerAPI.CreateLayer(dataLayer);
 
-			Catalog catalog = new Catalog("1984", "George Orwell", 310);
-			User user = new User("Can", "Iscan");
+			ICatalog catalog = new Catalog("1984", "George Orwell", 310);
+			IUser user = new User("Can", "Iscan");
 
 			catalog = logicLayer.addCatalog(catalog);
 			user = logicLayer.addUser(user);
@@ -91,8 +91,8 @@ namespace TestPT.LogicLayer
 			DataLayerAPI dataLayer = DataLayerAPI.CreateDataLayerWithCollections();
 			LogicLayerAPI logicLayer = LogicLayerAPI.CreateLayer(dataLayer);
 
-			Catalog catalog = new Catalog("1984", "George Orwell", 310);
-			User user = new User("Can", "Iscan");
+			ICatalog catalog = new Catalog("1984", "George Orwell", 310);
+			IUser user = new User("Can", "Iscan");
 
 			catalog = logicLayer.addCatalog(catalog);
 			user = logicLayer.addUser(user);
@@ -116,8 +116,8 @@ namespace TestPT.LogicLayer
 			DataLayerAPI dataLayer = DataLayerAPI.CreateDataLayerWithCollections();
 			LogicLayerAPI logicLayer = LogicLayerAPI.CreateLayer(dataLayer);
 
-			Catalog catalog = new Catalog("Brave New World", "Aldous Huxley", 288);
-			User user = new User("Ozgen", "Acikelli");
+			ICatalog catalog = new Catalog("Brave New World", "Aldous Huxley", 288);
+			IUser user = new User("Ozgen", "Acikelli");
 
 			catalog = logicLayer.addCatalog(catalog);
 			user = logicLayer.addUser(user);
@@ -133,13 +133,13 @@ namespace TestPT.LogicLayer
 			LogicLayerAPI logicLayer = LogicLayerAPI.CreateLayer(dataLayer);
 
 
-			Catalog catalog1 = logicLayer.addCatalog(new Catalog("1984", "George Orwell", 310));
-			Catalog catalog2 = logicLayer.addCatalog(new Catalog("Brave New World", "Aldous Huxley", 288));
-			Catalog catalog3 = logicLayer.addCatalog(new Catalog("Maus", "Art Spiegelman", 270));
+			ICatalog catalog1 = logicLayer.addCatalog(new Catalog("1984", "George Orwell", 310));
+			ICatalog catalog2 = logicLayer.addCatalog(new Catalog("Brave New World", "Aldous Huxley", 288));
+			ICatalog catalog3 = logicLayer.addCatalog(new Catalog("Maus", "Art Spiegelman", 270));
 
-			User user1 = logicLayer.addUser(new User("Ozgen", "Acikelli"));
-			User user2 = logicLayer.addUser(new User("Can", "Iscan"));
-			User user3 = logicLayer.addUser(new User("Mert", "Tekin"));
+			IUser user1 = logicLayer.addUser(new User("Ozgen", "Acikelli"));
+			IUser user2 = logicLayer.addUser(new User("Can", "Iscan"));
+			IUser user3 = logicLayer.addUser(new User("Mert", "Tekin"));
 
 			logicLayer.borrowCatalog(catalog2, user3);
 			logicLayer.borrowCatalog(catalog1, user2);
