@@ -84,7 +84,7 @@ namespace TestPT
 			Assert.AreEqual(state.CatalogEntry, catalog);
 			Assert.AreEqual(state.Available, true);
 
-			state = (State)dataLayer.addState(state);
+			state = dataLayer.addState(state);
 
 			Assert.AreEqual(state, dataLayer.getState(state.Id));
 

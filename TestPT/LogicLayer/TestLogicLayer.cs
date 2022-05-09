@@ -18,41 +18,41 @@ namespace TestPT.LogicLayer
 			dataLayer1 = DataLayerAPI.CreateDataLayerWithCollections();
 			dataLayer2 = DataLayerAPI.CreateDataLayerWithCollections();
 
-			dataLayer1.addUser(new User("Stephen", "Bennet"));
-			dataLayer1.addUser(new User("Ambre", "Garcia"));
-			dataLayer1.addUser(new User("Anton", "Saarela"));
-			dataLayer1.addUser(new User("Thibault", "Lefevre"));
-			dataLayer1.addUser(new User("Kaylee", "Jenkins"));
-			dataLayer1.addUser(new User("Donna", "Garcia"));
+			dataLayer1.addUser(dataLayer1.createUser("Stephen", "Bennet"));
+			dataLayer1.addUser(dataLayer1.createUser("Ambre", "Garcia"));
+			dataLayer1.addUser(dataLayer1.createUser("Anton", "Saarela"));
+			dataLayer1.addUser(dataLayer1.createUser("Thibault", "Lefevre"));
+			dataLayer1.addUser(dataLayer1.createUser("Kaylee", "Jenkins"));
+			dataLayer1.addUser(dataLayer1.createUser("Donna", "Garcia"));
 
 
-			dataLayer1.addCatalog("Trafik", new Catalog("Trafik", "Rikki Ducornet", 88));
-			dataLayer1.addCatalog("Finna", new Catalog("Finna", "Nino Cipri", 92));
-			dataLayer1.addCatalog("All Systems Red", new Catalog("All Systems Red", "Martha Wells", 144));
-			dataLayer1.addCatalog("Riot Baby", new Catalog("Riot Baby", "Tochi Onyebuchi", 167));
+			dataLayer1.addCatalog("Trafik", dataLayer1.createCatalog("Trafik", "Rikki Ducornet", 88));
+			dataLayer1.addCatalog("Finna", dataLayer1.createCatalog("Finna", "Nino Cipri", 92));
+			dataLayer1.addCatalog("All Systems Red", dataLayer1.createCatalog("All Systems Red", "Martha Wells", 144));
+			dataLayer1.addCatalog("Riot Baby", dataLayer1.createCatalog("Riot Baby", "Tochi Onyebuchi", 167));
 			
-			IUser user1 = dataLayer1.addUser(new User("Lucy", "Wheeler"));
-			ICatalog catalog1 = dataLayer1.addCatalog("The Siler Patient", new Catalog("The Siler Patient", "Alex Michaelides", 304));
-			IState state1 = dataLayer1.addState(new State(catalog1, false));
-			dataLayer1.addEvent(new Event(state1, user1));
+			IUser user1 = dataLayer1.addUser(dataLayer1.createUser("Lucy", "Wheeler"));
+			ICatalog catalog1 = dataLayer1.addCatalog("The Siler Patient", dataLayer1.createCatalog("The Siler Patient", "Alex Michaelides", 304));
+			IState state1 = dataLayer1.addState(dataLayer1.createState(catalog1, false));
+			dataLayer1.addEvent(dataLayer1.createEvent(state1, user1));
 
 
-			dataLayer2.addUser(new User("Kean", "Mars"));
-			dataLayer2.addUser(new User("Jonathan", "Ulrich"));
-			dataLayer2.addUser(new User("Lars", "Hetfield"));
-			dataLayer2.addUser(new User("Christian", "Jackson"));
-			dataLayer2.addUser(new User("Brad", "Davis"));
+			dataLayer2.addUser(dataLayer2.createUser("Kean", "Mars"));
+			dataLayer2.addUser(dataLayer2.createUser("Jonathan", "Ulrich"));
+			dataLayer2.addUser(dataLayer2.createUser("Lars", "Hetfield"));
+			dataLayer2.addUser(dataLayer2.createUser("Christian", "Jackson"));
+			dataLayer2.addUser(dataLayer2.createUser("Brad", "Davis"));
 					 
-			dataLayer2.addCatalog("The Robber Bride", new Catalog("The Robber Bride", "Margaret Atwood", 528));
-			dataLayer2.addCatalog("The List", new Catalog("The List", "Siobhan Vivian", 288));
-			dataLayer2.addCatalog("Little, Big", new Catalog("Little, Big", "John Crowley", 538));
-			dataLayer2.addCatalog("Possession", new Catalog("Possession", "A. S. Byatt", 555));
+			dataLayer2.addCatalog("The Robber Bride", dataLayer2.createCatalog("The Robber Bride", "Margaret Atwood", 528));
+			dataLayer2.addCatalog("The List", dataLayer2.createCatalog("The List", "Siobhan Vivian", 288));
+			dataLayer2.addCatalog("Little, Big", dataLayer2.createCatalog("Little, Big", "John Crowley", 538));
+			dataLayer2.addCatalog("Possession", dataLayer2.createCatalog("Possession", "A. S. Byatt", 555));
 
 
-			IUser user2 = dataLayer2.addUser(new User("Andrew", "Carlson"));
-			ICatalog catalog2 = dataLayer2.addCatalog("Follow Me to Ground", new Catalog("Follow Me to Ground", "Sue Rainsford", 245));
-			IState state2 = dataLayer2.addState(new State(catalog2, false));
-			dataLayer1.addEvent(new Event(state2, user2));
+			IUser user2 = dataLayer2.addUser(dataLayer2.createUser("Andrew", "Carlson"));
+			ICatalog catalog2 = dataLayer2.addCatalog("Follow Me to Ground", dataLayer2.createCatalog("Follow Me to Ground", "Sue Rainsford", 245));
+			IState state2 = dataLayer2.addState(dataLayer2.createState(catalog2, false));
+			dataLayer1.addEvent(dataLayer2.createEvent(state2, user2));
 		}
 
 		[TestMethod]
@@ -232,7 +232,7 @@ namespace TestPT.LogicLayer
 			logicLayer.returnCatalog(catalog2, user4);
 			logicLayer.borrowCatalog(catalog3, user3);
 
-			foreach (Event _event in logicLayer.getEvents())
+			foreach (IEvent _event in logicLayer.getEvents())
 			{
 				if (_event.StateEntry.Available == true && _event.StateEntry.CatalogEntry == catalog2)
 				{
