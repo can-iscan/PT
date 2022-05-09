@@ -152,5 +152,25 @@ namespace PT.LogicLayer
 		{
 			return this.DataRepositoryEntry.DataLayer.removeUser(user.Id);
 		}
+
+		public override IEvent createEvent(IState state, IUser user)
+		{
+			return this.DataRepositoryEntry.DataLayer.createEvent(state, user);
+		}
+
+		public override IState createState(ICatalog catalog, bool available)
+		{
+			return this.DataRepositoryEntry.DataLayer.createState(catalog, available);
+		}
+
+		public override IUser createUser(string fname, string lname)
+		{
+			return this.DataRepositoryEntry.DataLayer.createUser(fname, lname);
+		}
+
+		public override ICatalog createCatalog(string title, string author, ushort numberOfPages)
+		{
+			return this.DataRepositoryEntry.DataLayer.createCatalog(title, author, numberOfPages);
+		}
 	}
 }

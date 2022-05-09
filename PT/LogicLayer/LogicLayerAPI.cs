@@ -28,6 +28,11 @@ namespace PT.LogicLayer
 		public abstract IEvent getEvent(uint id);
 		public abstract IState getState(uint id);
 
+		public abstract IEvent createEvent(IState state, IUser user);
+		public abstract IState createState(ICatalog catalog, bool available);
+		public abstract IUser createUser(string fname, string lname);
+		public abstract ICatalog createCatalog(string title, string author, ushort numberOfPages);
+
 		public static LogicLayerAPI CreateLayer(DataLayerAPI dataLayer)
 		{
 			return new DataService(dataLayer);

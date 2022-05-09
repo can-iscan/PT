@@ -17,7 +17,12 @@ namespace TestPT
 		{
 			DataLayerAPI dataLayer = DataLayerAPI.CreateDataLayerWithCollections();
 
-			Catalog catalog = new Catalog("1984", "George Orwell", 300);
+			ICatalog catalog = dataLayer.createCatalog("1984", "George Orwell", 300);
+
+			Assert.AreEqual(catalog.Title, "1984");
+			Assert.AreEqual(catalog.Author, "George Orwell");
+			Assert.AreEqual(catalog.NumberOfPages, 300);
+
 			dataLayer.addCatalog(catalog.Title, catalog);
 
 			Assert.AreEqual(catalog, dataLayer.getCatalog(catalog.Title));
@@ -25,7 +30,7 @@ namespace TestPT
 			dataLayer.removeCatalog(catalog.Title);
 
 			bool deleted = true;
-			foreach (Catalog catl in dataLayer.getAllCatalogs())
+			foreach (ICatalog catl in dataLayer.getAllCatalogs())
 			{
 				if (catl.Title == catalog.Title)
 					deleted = false;
@@ -39,12 +44,32 @@ namespace TestPT
 		{
 			DataLayerAPI dataLayer = DataLayerAPI.CreateDataLayerWithCollections();
 
-			User user = new User("Can", "Iscan");
-			user = (User)dataLayer.addUser(user);
+			IUser user = dataLayer.createUser("Can", "Iscan");
+
+			Assert.AreEqual(user.FirstName, "Can");
+			Assert.AreEqual(user.LastName, "Iscan");
+
+			user = dataLayer.addUser(user);
 
 			Assert.AreEqual(user, dataLayer.getUser(user.Id));
 
-			Assert.IsNotNull(dataLayer.getAllUsers());
+			foreach (IUser usr in dataLayer.getAllUsers())
+			{
+				if (usr.FirstName == "Can")
+				{
+					Assert.AreEqual(usr.LastName, "Iscan");
+				}
+			}
+
+			dataLayer.removeUser(user.Id);
+
+			foreach (IUser usr in dataLayer.getAllUsers())
+			{
+				if (usr.FirstName == "Can")
+				{
+					Assert.Fail();
+				}
+			}
 		}
 
 		[TestMethod]
@@ -52,12 +77,26 @@ namespace TestPT
 		{
 			DataLayerAPI dataLayer = DataLayerAPI.CreateDataLayerWithCollections();
 
-			Catalog catalog = new Catalog("1984", "George Orwell", 300);
+			ICatalog catalog = dataLayer.createCatalog("1984", "George Orwell", 300);
 
-			State state = new State(catalog, true);
+			IState state = dataLayer.createState(catalog, true);
+
+			Assert.AreEqual(state.CatalogEntry, catalog);
+			Assert.AreEqual(state.Available, true);
+
 			state = (State)dataLayer.addState(state);
 
 			Assert.AreEqual(state, dataLayer.getState(state.Id));
+
+			dataLayer.removeState(state.Id);
+
+			foreach (IState stt in dataLayer.getAllStates())
+			{
+				if (stt.Id == state.Id)
+				{
+					Assert.Fail();
+				}
+			}
 
 		}
 
@@ -66,13 +105,17 @@ namespace TestPT
 		{
 			DataLayerAPI dataLayer = DataLayerAPI.CreateDataLayerWithCollections();
 
-			Catalog catalog = new Catalog("1984", "George Orwell", 300);
-			State state = new State(catalog, true);
-			User user = new User("Can", "Iscan");
-			User user2 = new User("Eren", "Tekin");
+			ICatalog catalog = dataLayer.createCatalog("1984", "George Orwell", 300);
+			IState state = dataLayer.createState(catalog, true);
+			IUser user = dataLayer.createUser("Can", "Iscan");
+			IUser user2 = dataLayer.createUser("Eren", "Tekin");
 
-			Event _event = new Event(state, user);
-			_event = (Event)dataLayer.addEvent(_event);
+			IEvent _event = dataLayer.createEvent(state, user);
+
+			Assert.AreEqual(_event.StateEntry, state);
+			Assert.AreEqual(_event.UserEntry, user);
+
+			_event = dataLayer.addEvent(_event);
 
 			Assert.AreEqual(_event, dataLayer.getEvent(_event.Id));
 
