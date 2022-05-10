@@ -42,7 +42,7 @@ namespace TestPT
 		[TestMethod]
 		public void TestUser()
 		{
-			DataLayerAPI dataLayer = DataLayerAPI.CreateDataLayerWithCollections();
+			DataLayerAPI dataLayer = DataLayerAPI.CreateDataLayer();
 
 			IUser user = dataLayer.createUser("Can", "Iscan");
 
@@ -103,7 +103,7 @@ namespace TestPT
 		[TestMethod]
 		public void TestEvent()
 		{
-			DataLayerAPI dataLayer = DataLayerAPI.CreateDataLayerWithCollections();
+			DataLayerAPI dataLayer = DataLayerAPI.CreateDataLayer();
 
 			ICatalog catalog = dataLayer.createCatalog("1984", "George Orwell", 300);
 			IState state = dataLayer.createState(catalog, true);

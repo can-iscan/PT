@@ -42,5 +42,10 @@ namespace PT.DataLayer
 		{
 			return new DataStorageWithCollections();
 		}
+
+		public static DataLayerAPI CreateDataLayer()
+		{
+			return new DataStorageGeneration();
+		}
 	}
 }

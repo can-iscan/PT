@@ -189,4 +189,6 @@ namespace PT.DataLayer
 			return new Catalog(title, author, numberOfPages);
 		}
 	}
+
+	internal class DataStorageGeneration : DataStorageWithCollections {}
 }

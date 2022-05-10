@@ -16,7 +16,7 @@ namespace TestPT.LogicLayer
 		public TestLogicLayer()
 		{ 
 			dataLayer1 = DataLayerAPI.CreateDataLayerWithCollections();
-			dataLayer2 = DataLayerAPI.CreateDataLayerWithCollections();
+			dataLayer2 = DataLayerAPI.CreateDataLayer();
 
 			dataLayer1.addUser(dataLayer1.createUser("Stephen", "Bennet"));
 			dataLayer1.addUser(dataLayer1.createUser("Ambre", "Garcia"));
