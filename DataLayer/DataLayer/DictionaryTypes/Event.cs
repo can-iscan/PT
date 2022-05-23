@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace PT.DataLayer
+namespace PT.DataLayer.Dictionary
 {
-	public class Event : IEvent
+	internal class Event : IEvent
 	{
 		public uint Id { get; set; }
 		public IState StateEntry { get; set; }
@@ -29,14 +29,6 @@ namespace PT.DataLayer
 		}
 	}
 
-	public class EventDictionary : Dictionary<uint, Event> {}
-
-	public interface IEvent
-	{
-		public uint Id { get; set; }
-		public IState StateEntry { get; set; }
-		public IUser UserEntry { get; set; }
-		public DateTime Time { get; set; }
-	}
+	internal class EventDictionary : Dictionary<uint, Event> {}
 }
 

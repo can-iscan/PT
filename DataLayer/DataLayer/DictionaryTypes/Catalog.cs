@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace PT.DataLayer
+namespace PT.DataLayer.Dictionary
 {
-	public class Catalog : ICatalog
+	internal class Catalog : ICatalog
 	{
 		public string Title { get; set; }
 		public string Author { get; set; }
@@ -19,12 +19,6 @@ namespace PT.DataLayer
 		}
 	}
 
-	public class CatalogDictionary : Dictionary<string, Catalog> {}
+	internal class CatalogDictionary : Dictionary<string, Catalog> {}
 
-	public interface ICatalog
-	{
-		public string Title { get; set; }
-		public string Author { get; set; }
-		public ushort NumberOfPages { get; set; }
-	}
 }

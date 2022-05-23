@@ -2,19 +2,20 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using PT.DataLayer.Dictionary;
 
 namespace PT.DataLayer
 {
 	internal class DataStorageWithCollections : DataLayerAPI
 	{
-		private DataContext DataContextEntry;
+		private DictionaryDataContext DataContextEntry;
 		private uint IdCounterUser = 0;
 		private uint IdCounterState = 0;
 		private uint IdCounterEvent = 0;
 
 		public DataStorageWithCollections()
 		{
-			this.DataContextEntry = new DataContext();
+			this.DataContextEntry = new DictionaryDataContext();
 		}
 
 		public override bool Connect()
@@ -190,5 +191,4 @@ namespace PT.DataLayer
 		}
 	}
 
-	internal class DataStorageGeneration : DataStorageWithCollections {}
 }

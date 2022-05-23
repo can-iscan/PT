@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace PT.DataLayer
+namespace PT.DataLayer.Dictionary
 {
 	internal class User : IUser
 	{
@@ -22,10 +22,4 @@ namespace PT.DataLayer
 
 	internal class UserDictionary : Dictionary<uint, User> {}
 
-	public interface IUser
-	{
-		uint Id { get; set; }
-		string FirstName { get; set; }
-		string LastName { get; set; }
-	}
 }

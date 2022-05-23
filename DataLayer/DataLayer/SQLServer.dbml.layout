@@ -1,0 +1,51 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ordesignerObjectsDiagram dslVersion="1.0.0.0" absoluteBounds="0, 0, 11, 8.5" name="SQLServer">
+  <DataContextMoniker Name="/SQLServerDataContext" />
+  <nestedChildShapes>
+    <classShape Id="cb94c32d-2151-4c7e-a4ad-f00a51592f4d" absoluteBounds="3.5, 4, 2, 1.3862939453125005">
+      <DataClassMoniker Name="/SQLServerDataContext/User" />
+      <nestedChildShapes>
+        <elementListCompartment Id="3d74397f-b6a6-432b-bd7b-92850298fa2d" absoluteBounds="3.515, 4.46, 1.9700000000000002, 0.8262939453125" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="7552721a-e7c2-4c7b-b89a-06902ce787d6" absoluteBounds="3.5, 1, 2, 1.3862939453125">
+      <DataClassMoniker Name="/SQLServerDataContext/State" />
+      <nestedChildShapes>
+        <elementListCompartment Id="34214d24-2294-4f6d-95bf-a31d49465ea8" absoluteBounds="3.515, 1.46, 1.9700000000000002, 0.8262939453125" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="48f14a65-5ec1-48f0-9aeb-50b7f4e245f5" absoluteBounds="6.25, 0.875, 2, 1.5785953776041664">
+      <DataClassMoniker Name="/SQLServerDataContext/Event" />
+      <nestedChildShapes>
+        <elementListCompartment Id="b30f3e3a-f7ab-4670-bcfa-220015dda754" absoluteBounds="6.265, 1.335, 1.9700000000000002, 1.0185953776041665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="86a52755-f66f-411d-9337-f911270fc678" absoluteBounds="0.75, 1, 2, 1.3862939453125">
+      <DataClassMoniker Name="/SQLServerDataContext/Catalog" />
+      <nestedChildShapes>
+        <elementListCompartment Id="87d3c2e9-fbaf-4821-81f3-5ebf4e2d9435" absoluteBounds="0.765, 1.46, 1.9700000000000002, 0.8262939453125" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <associationConnector edgePoints="[(5.5 : 1.69314697265625); (6.25 : 1.69314697265625)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/SQLServerDataContext/State/State_Event" />
+      <nodes>
+        <classShapeMoniker Id="7552721a-e7c2-4c7b-b89a-06902ce787d6" />
+        <classShapeMoniker Id="48f14a65-5ec1-48f0-9aeb-50b7f4e245f5" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(5.5 : 4.69314697265625); (7.25 : 4.69314697265625); (7.25 : 2.45359537760417)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+      <AssociationMoniker Name="/SQLServerDataContext/User/User_Event" />
+      <nodes>
+        <classShapeMoniker Id="cb94c32d-2151-4c7e-a4ad-f00a51592f4d" />
+        <classShapeMoniker Id="48f14a65-5ec1-48f0-9aeb-50b7f4e245f5" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(2.75 : 1.69314697265625); (3.5 : 1.69314697265625)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/SQLServerDataContext/Catalog/Catalog_State" />
+      <nodes>
+        <classShapeMoniker Id="86a52755-f66f-411d-9337-f911270fc678" />
+        <classShapeMoniker Id="7552721a-e7c2-4c7b-b89a-06902ce787d6" />
+      </nodes>
+    </associationConnector>
+  </nestedChildShapes>
+</ordesignerObjectsDiagram>

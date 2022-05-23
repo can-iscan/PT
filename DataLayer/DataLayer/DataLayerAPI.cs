@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using PT.DataLayer.Dictionary;
 
 namespace PT.DataLayer
 {
@@ -43,9 +44,9 @@ namespace PT.DataLayer
 			return new DataStorageWithCollections();
 		}
 
-		public static DataLayerAPI CreateDataLayer()
+		public static DataLayerAPI CreateDataLayerWithSQLServer()
 		{
-			return new DataStorageGeneration();
+			return new DataStorageWithSQLServer();
 		}
 	}
 }

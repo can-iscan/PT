@@ -10,8 +10,9 @@ using PT.DataLayer;
 namespace TestPT
 {
 	[TestClass]
-	public class TestDataLayerAPI
+	public class TestCollectionsDataLayer
 	{
+
 		[TestMethod]
 		public void TestCatalog()
 		{
@@ -42,7 +43,7 @@ namespace TestPT
 		[TestMethod]
 		public void TestUser()
 		{
-			DataLayerAPI dataLayer = DataLayerAPI.CreateDataLayer();
+			DataLayerAPI dataLayer = DataLayerAPI.CreateDataLayerWithCollections();
 
 			IUser user = dataLayer.createUser("Can", "Iscan");
 
@@ -103,7 +104,7 @@ namespace TestPT
 		[TestMethod]
 		public void TestEvent()
 		{
-			DataLayerAPI dataLayer = DataLayerAPI.CreateDataLayer();
+			DataLayerAPI dataLayer = DataLayerAPI.CreateDataLayerWithCollections();
 
 			ICatalog catalog = dataLayer.createCatalog("1984", "George Orwell", 300);
 			IState state = dataLayer.createState(catalog, true);

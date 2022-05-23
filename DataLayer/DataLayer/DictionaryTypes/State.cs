@@ -1,10 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using PT.DataLayer;
 
-namespace PT.DataLayer
+namespace PT.DataLayer.Dictionary
 {
-	public class State : IState
+	internal class State : IState
 	{
 		public uint Id { get; set; }
 		public ICatalog CatalogEntry { get; set; }
@@ -20,12 +21,6 @@ namespace PT.DataLayer
 
 	}
 
-	public class StateDictionary : Dictionary<uint, State> {}
+	internal class StateDictionary : Dictionary<uint, State> {}
 
-	public interface IState
-	{
-		public uint Id { get; set; }
-		public ICatalog CatalogEntry { get; set; }
-		public bool Available { get; set; }
-	}
 }

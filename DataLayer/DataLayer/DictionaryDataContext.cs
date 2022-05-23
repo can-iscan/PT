@@ -1,17 +1,18 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using PT.DataLayer.Dictionary;
 
 namespace PT.DataLayer
 {
-	public class DataContext
+	internal class DictionaryDataContext
 	{
 		public CatalogDictionary	Catalogs;
 		public EventDictionary		Events;
 		public UserDictionary		Users;
 		public StateDictionary		States;
 
-		public DataContext()
+		public DictionaryDataContext()
 		{
 			this.Catalogs = new CatalogDictionary();
 			this.Events = new EventDictionary();
