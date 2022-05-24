@@ -4,7 +4,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{B81218EC-4452-4F7B-A587-4C643CFD08B1}</ProjectGuid>
+    <ProjectGuid>{243773D7-8385-47FE-9881-2C8CB8E2313E}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>DataLayer</RootNamespace>
@@ -42,43 +42,33 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DataLayer\DictionaryTypes\Catalog.cs" />
-    <Compile Include="DataLayer\DictionaryDataContext.cs" />
-    <Compile Include="DataLayer\DataLayerAPI.cs" />
-    <Compile Include="DataLayer\DataStorageWithCollections.cs" />
-    <Compile Include="DataLayer\DataStorageWithSQLServer.cs" />
-    <Compile Include="DataLayer\DictionaryTypes\Event.cs" />
-    <Compile Include="DataLayer\ICatalog.cs" />
-    <Compile Include="DataLayer\IEvent.cs" />
-    <Compile Include="DataLayer\IState.cs" />
-    <Compile Include="DataLayer\IUser.cs" />
-    <Compile Include="DataLayer\SQLServer.designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>SQLServer.dbml</DependentUpon>
-    </Compile>
-    <Compile Include="DataLayer\DictionaryTypes\State.cs" />
-    <Compile Include="DataLayer\DictionaryTypes\User.cs" />
+    <Compile Include="DataLayerAPI.cs" />
+    <Compile Include="DataStorageWithSQLServer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\Settings.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
       <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
+    <Compile Include="SQLServer.designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>SQLServer.dbml</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
-    <None Include="DataLayer\SQLServer.dbml">
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="SQLServer.dbml">
       <Generator>MSLinqToSQLGenerator</Generator>
       <LastGenOutput>SQLServer.designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
     </None>
-    <None Include="DataLayer\SQLServer.dbml.layout">
+    <None Include="SQLServer.dbml.layout">
       <DependentUpon>SQLServer.dbml</DependentUpon>
-    </None>
-    <None Include="Properties\Settings.settings">
-      <Generator>SettingsSingleFileGenerator</Generator>
-      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
   </ItemGroup>
   <ItemGroup>
