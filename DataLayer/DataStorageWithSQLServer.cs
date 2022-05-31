@@ -47,29 +47,52 @@ namespace DataLayer
 
 		public override List<Catalog> getAllCatalogs()
 		{
-			return this.db.Catalogs.Select(o => o).ToList<Catalog>();
+			IQueryable<Catalog> result;
+
+			result = from catalog in this.db.Catalogs
+					 select catalog;
+
+			return result.ToList();
 		}
 
 		public override List<Event> getAllEvents()
 		{
-			return this.db.Events.Select(o => o).ToList<Event>();
+			IQueryable<Event> result;
+
+			result = from _event in this.db.Events
+					 select _event;
+
+			return result.ToList();
 		}
 
 		public override List<State> getAllStates()
 		{
-			return this.db.States.Select(o => o).ToList<State>();
+			IQueryable<State> result;
+
+			result = from state in this.db.States
+					 select state;
+
+			return result.ToList();
 		}
 
 		public override List<User> getAllUsers()
 		{
-			return this.db.Users.Select(o => o).ToList<User>();
+			IQueryable<User> result;
+
+			result = from user in this.db.Users
+					 select user;
+
+
+			return result.ToList();
 		}
 
 		public override Catalog getCatalog(string title)
 		{
 			try
 			{
-				return this.db.Catalogs.Single(o => o.Title == title);
+				return (from catalog in this.db.Catalogs
+					   where catalog.Title == title
+					   select catalog).First();
 			}
 			catch
 			{
@@ -81,7 +104,9 @@ namespace DataLayer
 		{
 			try
 			{
-				return this.db.Events.Single(o => o.Id == id);
+				return (from _event in this.db.Events
+						where _event.Id == id
+						select _event).First();
 			}
 			catch
 			{
@@ -93,7 +118,9 @@ namespace DataLayer
 		{
 			try
 			{
-				return this.db.States.Single(o => o.Id == id);
+				return (from state in this.db.States
+						where state.Id == id
+						select state).First();
 			}
 			catch
 			{
@@ -105,7 +132,9 @@ namespace DataLayer
 		{
 			try
 			{
-				return this.db.Users.Single(o => o.Id == id);
+				return (from user in this.db.Users
+						where user.Id == id
+						select user).First();
 			}
 			catch
 			{
@@ -117,7 +146,7 @@ namespace DataLayer
 		{
 			try
 			{
-				Catalog catalog = this.db.Catalogs.Single(o => o.Title == title);
+				Catalog catalog = this.getCatalog(title);
 				this.db.Catalogs.DeleteOnSubmit(catalog);
 				this.db.SubmitChanges();
 				return true;
@@ -133,7 +162,7 @@ namespace DataLayer
 		{
 			try
 			{
-				Event _event = this.db.Events.Single(o => o.Id == id);
+				Event _event = this.getEvent(id);
 				this.db.Events.DeleteOnSubmit(_event);
 				this.db.SubmitChanges();
 				return true;
@@ -149,7 +178,7 @@ namespace DataLayer
 		{
 			try
 			{
-				State state = this.db.States.Single(o => o.Id == id);
+				State state = this.getState(id);
 				this.db.States.DeleteOnSubmit(state);
 				this.db.SubmitChanges();
 				return true;
@@ -165,7 +194,7 @@ namespace DataLayer
 		{
 			try
 			{
-				User user = this.db.Users.Single(o => o.Id == id);
+				User user = this.getUser(id);
 				this.db.Users.DeleteOnSubmit(user);
 				this.db.SubmitChanges();
 				return true;
@@ -179,7 +208,7 @@ namespace DataLayer
 
 		public override bool setCatalog(string title, Catalog catalog)
 		{
-			Catalog updateCatalog = this.db.Catalogs.Single(o => o.Title == title);
+			Catalog updateCatalog = this.getCatalog(title);
 			updateCatalog.Author = catalog.Author;
 			updateCatalog.NumberOfPages = catalog.NumberOfPages;
 			updateCatalog.Title = catalog.Title;
@@ -189,7 +218,7 @@ namespace DataLayer
 
 		public override bool setEvent(Event _event)
 		{
-			Event updateEvent = this.db.Events.Single(o => o.Id == _event.Id);
+			Event updateEvent = this.getEvent(_event.Id);
 			updateEvent.UserEntry = _event.UserEntry;
 			updateEvent.StateEntry = _event.StateEntry;
 			updateEvent.Time = _event.Time;
@@ -199,7 +228,7 @@ namespace DataLayer
 
 		public override bool setState(State state)
 		{
-			State updateState = this.db.States.Single(o => o.Id == state.Id);
+			State updateState = this.getState(state.Id);
 			updateState.Available = state.Available;
 			updateState.CatalogEntry = state.CatalogEntry;
 			this.db.SubmitChanges();
@@ -208,7 +237,7 @@ namespace DataLayer
 
 		public override bool setUser(User user)
 		{
-			User updateUser = this.db.Users.Single(o => o.Id == user.Id);
+			User updateUser = this.getUser(user.Id);
 			updateUser.FirstName = user.FirstName;
 			updateUser.LastName = user.LastName;
 			this.db.SubmitChanges();

@@ -97,10 +97,6 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\DataLayer\DataLayer.csproj">
-      <Project>{243773d7-8385-47fe-9881-2c8cb8e2313e}</Project>
-      <Name>DataLayer</Name>
-    </ProjectReference>
     <ProjectReference Include="..\ServiceLayer\ServiceLayer.csproj">
       <Project>{fd3dddcf-7999-44fa-b81d-0cee96388e4b}</Project>
       <Name>ServiceLayer</Name>
