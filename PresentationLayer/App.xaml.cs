@@ -1,4 +1,5 @@
-﻿using System;
+﻿using PresentationLayer.ViewModel;
+using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
@@ -13,5 +14,15 @@ namespace PresentationLayer
 	/// </summary>
 	public partial class App : Application
 	{
+		protected override void OnStartup(StartupEventArgs e)
+		{
+			MainWindow = new View.MainWindow()
+			{
+				DataContext = new MainViewModel()
+			};
+			MainWindow.Show();
+			
+			base.OnStartup(e);
+		}
 	}
 }

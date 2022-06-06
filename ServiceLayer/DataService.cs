@@ -17,6 +17,65 @@ namespace ServiceLayer
 			this.dataLayer.Connect();
 		}
 
+		public DataService(DataLayerAPI dataAPI)
+		{
+			this.dataLayer = dataAPI;
+			this.dataLayer.Connect();
+		}
+
+		public override bool borrowCatalog(string catalog, long user)
+		{
+
+			if (this.countAvailableCatalog(catalog) > 0)
+			{
+				DataLayer.State newState = new DataLayer.State();
+				newState.CatalogEntry = catalog;
+				newState.Available = false;
+				this.dataLayer.addState(newState);
+				DataLayer.Event _event = new DataLayer.Event();
+				_event.UserEntry = user;
+				_event.State = newState;
+				this.dataLayer.addEvent(_event);
+				return true;
+			}
+
+			return false;
+		}
+
+		public override bool returnCatalog(string catalog, long user)
+		{
+			DataLayer.State newState = new DataLayer.State();
+			newState.CatalogEntry = catalog;
+			newState.Available = true;
+			this.dataLayer.addState(newState);
+			DataLayer.Event _event = new DataLayer.Event();
+			_event.UserEntry = user;
+			_event.State = newState;
+			this.dataLayer.addEvent(_event);
+
+			return true;
+		}
+
+		public override int countAvailableCatalog(string catalog)
+		{
+			List<State> states = this.getAllStates();
+
+			int available = 0, notAvailable = 0;
+
+			foreach (State state in states)
+			{
+				if (state.CatalogEntry == catalog)
+				{
+					if (state.Available)
+						available++;
+					else
+						notAvailable++;
+				}
+			}
+
+			return available - notAvailable;
+		}
+
 		public override string addCatalog(Catalog catalog)
 		{
 			return this.dataLayer.addCatalog(catalog.getDataLayerCatalog());

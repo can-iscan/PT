@@ -8,6 +8,11 @@ namespace ServiceLayer
 {
     public abstract class DataServiceAPI
     {
+		public abstract bool borrowCatalog(string catalog, long user);
+		public abstract bool returnCatalog(string catalog, long user);
+
+		public abstract int countAvailableCatalog(string catalog);
+
 		public abstract string addCatalog(Catalog catalog);
 		public abstract bool removeCatalog(string title);
 		public abstract Catalog getCatalog(string title);
@@ -30,7 +35,12 @@ namespace ServiceLayer
 		{
             return new DataService();
 		}
-    }
+
+		public static DataServiceAPI CreateDataServiceWith(DataLayer.DataLayerAPI dataAPI)
+		{
+			return new DataService(dataAPI);
+		}
+	}
 
 	public class User
 	{

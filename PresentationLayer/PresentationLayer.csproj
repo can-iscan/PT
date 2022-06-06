@@ -55,19 +55,49 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Page Include="View\MainView.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Model\Catalog.cs" />
+    <Compile Include="Model\Event.cs" />
     <Compile Include="Model\Service.cs" />
+    <Compile Include="Model\State.cs" />
+    <Compile Include="Model\User.cs" />
+    <Compile Include="ViewModel\AddBookViewModel.cs" />
+    <Compile Include="ViewModel\AddUserViewModel.cs" />
+    <Compile Include="ViewModel\BookViewModel.cs" />
+    <Compile Include="ViewModel\BorrowReturnViewModel.cs" />
+    <Compile Include="ViewModel\Commands\BorrowCommand.cs" />
+    <Compile Include="ViewModel\Commands\CancelCommand.cs" />
+    <Compile Include="ViewModel\Commands\CommandBase.cs" />
+    <Compile Include="ViewModel\Commands\ReturnCommand.cs" />
+    <Compile Include="ViewModel\Commands\SubmitAddBookCommand.cs" />
+    <Compile Include="ViewModel\Commands\SubmitAddUserCommand.cs" />
     <Compile Include="ViewModel\MainViewModel.cs" />
-    <Compile Include="View\MainView.xaml.cs">
-      <DependentUpon>MainView.xaml</DependentUpon>
-      <SubType>Code</SubType>
+    <Compile Include="ViewModel\Commands\NavigateCommand.cs" />
+    <Compile Include="ViewModel\Navigation\NavigationStore.cs" />
+    <Compile Include="ViewModel\UserViewModel.cs" />
+    <Compile Include="ViewModel\ViewBooksViewModel.cs" />
+    <Compile Include="ViewModel\ViewModelBase.cs" />
+    <Compile Include="ViewModel\ViewUsersViewModel.cs" />
+    <Compile Include="View\AddBook.xaml.cs">
+      <DependentUpon>AddBook.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\AddUser.xaml.cs">
+      <DependentUpon>AddUser.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\BorrowReturnBook.xaml.cs">
+      <DependentUpon>BorrowReturnBook.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\MainWindow.xaml.cs">
+      <DependentUpon>MainWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\ViewBooks.xaml.cs">
+      <DependentUpon>ViewBooks.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\ViewUsers.xaml.cs">
+      <DependentUpon>ViewUsers.xaml</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
@@ -101,6 +131,32 @@
       <Project>{fd3dddcf-7999-44fa-b81d-0cee96388e4b}</Project>
       <Name>ServiceLayer</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Page Include="View\AddBook.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\AddUser.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\BorrowReturnBook.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\MainWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\ViewBooks.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\ViewUsers.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
