@@ -1,4 +1,4 @@
-﻿using PresentationLayer.Model;
+﻿using Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,15 +17,15 @@ namespace PresentationLayer.ViewModel.Commands
 
 		public override void Execute(object parameter)
 		{
-			Service service = new Service();
+			ModelAPI model = ModelAPI.CreateModel();
 
-			Catalog catalog = new Catalog(
+			ICatalog catalog = model.CreateCatalog(
 				addBookVM.Title,
 				addBookVM.Author,
 				Int32.Parse(addBookVM.NumOfPages)
 				);
 
-			service.DataService.addCatalog(catalog.getServiceLayerCatalog());
+			model.AddCatalog(catalog);
 		}
 	}
 }

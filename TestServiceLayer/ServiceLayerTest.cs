@@ -14,7 +14,7 @@ namespace TestServiceLayer
 		[TestMethod]
 		public void TestAddRmoveGet()
 		{
-			DataServiceAPI serviceLayer = DataServiceAPI.CreateDataServiceWith(new DataLayerForTesting());
+			DataServiceAPI serviceLayer = DataServiceAPI.CreateDataService(new DataLayerForTesting());
 
 			Assert.AreEqual(serviceLayer.addCatalog(new Catalog()), "test");
 			Assert.AreEqual(serviceLayer.removeCatalog("1984"), true);
@@ -28,7 +28,7 @@ namespace TestServiceLayer
 		[TestMethod]
 		public void TestBorrow()
 		{
-			DataServiceAPI serviceLayer = DataServiceAPI.CreateDataServiceWith(new DataLayerForTesting());
+			DataServiceAPI serviceLayer = DataServiceAPI.CreateDataService(new DataLayerForTesting());
 
 			Assert.AreEqual(serviceLayer.borrowCatalog("1984", 4), true);
 		}
@@ -36,7 +36,7 @@ namespace TestServiceLayer
 		[TestMethod]
 		public void TestReturn()
 		{
-			DataServiceAPI serviceLayer = DataServiceAPI.CreateDataServiceWith(new DataLayerForTesting());
+			DataServiceAPI serviceLayer = DataServiceAPI.CreateDataService(new DataLayerForTesting());
 
 			Assert.AreEqual(serviceLayer.returnCatalog("1984", 3), true);
 		}
@@ -44,7 +44,7 @@ namespace TestServiceLayer
 		[TestMethod]
 		public void TestCountAvailable()
 		{
-			DataServiceAPI serviceLayer = DataServiceAPI.CreateDataServiceWith(new DataLayerForTesting());
+			DataServiceAPI serviceLayer = DataServiceAPI.CreateDataService(new DataLayerForTesting());
 
 			Assert.AreEqual(serviceLayer.countAvailableCatalog("1984"), 1);
 		}

@@ -59,11 +59,6 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Model\Catalog.cs" />
-    <Compile Include="Model\Event.cs" />
-    <Compile Include="Model\Service.cs" />
-    <Compile Include="Model\State.cs" />
-    <Compile Include="Model\User.cs" />
     <Compile Include="ViewModel\AddBookViewModel.cs" />
     <Compile Include="ViewModel\AddUserViewModel.cs" />
     <Compile Include="ViewModel\BookViewModel.cs" />
@@ -127,12 +122,6 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\ServiceLayer\ServiceLayer.csproj">
-      <Project>{fd3dddcf-7999-44fa-b81d-0cee96388e4b}</Project>
-      <Name>ServiceLayer</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
     <Page Include="View\AddBook.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -158,6 +147,11 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\Model\Model.csproj">
+      <Project>{12d14bda-9500-412b-ac52-eb476688c9b6}</Project>
+      <Name>Model</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

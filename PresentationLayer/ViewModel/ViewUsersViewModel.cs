@@ -1,4 +1,4 @@
-﻿using PresentationLayer.Model;
+﻿using Model;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -21,13 +21,9 @@ namespace PresentationLayer.ViewModel
 		{
 			this._users = new ObservableCollection<UserViewModel>();
 
-			Service service = new Service();
+			ModelAPI model = ModelAPI.CreateModel();
 
-			List<User> users = new List<User>();
-
-			users = User.getUserListFromService(service.DataService.getAllUsers());
-
-			foreach (User user in users)
+			foreach (IUser user in model.GetAllUsers())
 			{
 				_users.Add(new UserViewModel(user));
 			}

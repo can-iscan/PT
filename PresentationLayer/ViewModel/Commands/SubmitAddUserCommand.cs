@@ -1,4 +1,4 @@
-﻿using PresentationLayer.Model;
+﻿using Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,15 +18,15 @@ namespace PresentationLayer.ViewModel.Commands
 
 		public override void Execute(object parameter)
 		{
-			Service service = new Service();
+			ModelAPI model = ModelAPI.CreateModel();
 
-			User user = new User(
+			IUser user = model.CreateUser(
 				0,
 				addUserVM.Firstname,
 				addUserVM.LastName
 				);
 
-			service.DataService.addUser(user.getServiceLayerUser());
+			model.AddUser(user);
 		}
 	}
 }

@@ -36,7 +36,7 @@ namespace ServiceLayer
             return new DataService();
 		}
 
-		public static DataServiceAPI CreateDataServiceWith(DataLayer.DataLayerAPI dataAPI)
+		public static DataServiceAPI CreateDataService(DataLayer.DataLayerAPI dataAPI)
 		{
 			return new DataService(dataAPI);
 		}

@@ -16,12 +16,6 @@ namespace PresentationLayer
 	{
 		protected override void OnStartup(StartupEventArgs e)
 		{
-			MainWindow = new View.MainWindow()
-			{
-				DataContext = new MainViewModel()
-			};
-			MainWindow.Show();
-			
 			base.OnStartup(e);
 		}
 	}

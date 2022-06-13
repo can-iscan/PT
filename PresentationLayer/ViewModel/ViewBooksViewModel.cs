@@ -1,4 +1,4 @@
-﻿using PresentationLayer.Model;
+﻿using Model;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -20,13 +20,9 @@ namespace PresentationLayer.ViewModel
 		public ViewBooksViewModel() {
 			this._books = new ObservableCollection<BookViewModel>();
 
-			Service service = new Service();
+			ModelAPI model = ModelAPI.CreateModel();		
 
-			List<Catalog> catalogs = new List<Catalog>();
-
-			catalogs = Catalog.getCatalogListFromService(service.DataService.getAllCatalogs());
-
-			foreach (Catalog catalog in catalogs)
+			foreach (ICatalog catalog in model.GetAllCatalogs())
 			{
 				_books.Add(new BookViewModel(catalog));
 			}

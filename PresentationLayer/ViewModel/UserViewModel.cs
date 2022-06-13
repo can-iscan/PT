@@ -1,4 +1,4 @@
-﻿using PresentationLayer.Model;
+﻿using Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,13 +9,13 @@ namespace PresentationLayer.ViewModel
 {
 	public class UserViewModel : ViewModelBase
 	{
-		private readonly User _user;
+		private readonly IUser _user;
 
 		public string Id => _user.Id.ToString();
 		public string FirstName => _user.FirstName;
 		public string LastName => _user.LastName;
 
-		public UserViewModel(User user)
+		public UserViewModel(IUser user)
 		{
 			this._user = user;
 		}

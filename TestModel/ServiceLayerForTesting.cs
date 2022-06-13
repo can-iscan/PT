@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace TestPresentationLayer
+namespace TestModel
 {
 	class ServiceLayerForTesting : DataServiceAPI
 	{
@@ -61,7 +61,9 @@ namespace TestPresentationLayer
 
 		public override Catalog getCatalog(string title)
 		{
-			return new Catalog();
+			Catalog catalog = new Catalog();
+			catalog.Title = "testCatalog";
+			return catalog;
 		}
 
 		public override Event getEvent(long id)
@@ -76,7 +78,9 @@ namespace TestPresentationLayer
 
 		public override User getUser(long id)
 		{
-			return new User();
+			User user = new User();
+			user.FirstName = "testUser";
+			return user;
 		}
 
 		public override bool removeCatalog(string title)

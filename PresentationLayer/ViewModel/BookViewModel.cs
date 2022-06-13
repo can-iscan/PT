@@ -1,4 +1,4 @@
-﻿using PresentationLayer.Model;
+﻿using Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,13 +9,13 @@ namespace PresentationLayer.ViewModel
 {
 	public class BookViewModel : ViewModelBase
 	{
-		private readonly Catalog _book;
+		private readonly ICatalog _book;
 
 		public string Title => _book.Title;
 		public string Author => _book.Author;
 		public string NumberOfPages => _book.NumberOfPages.ToString();
 
-		public BookViewModel(Catalog catalog)
+		public BookViewModel(ICatalog catalog)
 		{
 			this._book = catalog;
 		}

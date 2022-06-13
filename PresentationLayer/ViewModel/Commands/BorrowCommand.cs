@@ -1,4 +1,4 @@
-﻿using PresentationLayer.Model;
+﻿using Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,9 +18,9 @@ namespace PresentationLayer.ViewModel.Commands
 
 		public override void Execute(object parameter)
 		{
-			Service service = new Service();
+			ModelAPI model = ModelAPI.CreateModel();
 
-			service.DataService.borrowCatalog(borrowVM.Title, Int32.Parse(borrowVM.UserId));
+			model.BorrowCatalog(borrowVM.Title, Int32.Parse(borrowVM.UserId));
 		}
 	}
 }
